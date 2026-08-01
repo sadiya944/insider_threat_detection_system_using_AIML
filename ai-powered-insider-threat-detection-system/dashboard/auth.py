@@ -7,16 +7,9 @@ def login(username, password):
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute(
-        """
-        SELECT id,
-               username,
-               password,
-               role
-        FROM users
-        WHERE username=%s
-        """,
-        (username,)
-    )
+    "SELECT * FROM users WHERE username=?",
+    (username,)
+)
 
     user = cursor.fetchone()
 
