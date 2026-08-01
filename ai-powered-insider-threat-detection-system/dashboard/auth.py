@@ -11,7 +11,10 @@ def login(username, password):
     (username,)
 )
 
-    user = cursor.fetchone()
+   row = cursor.fetchone()
+
+if row:
+    user = dict(row)
 
     conn.close()
 
