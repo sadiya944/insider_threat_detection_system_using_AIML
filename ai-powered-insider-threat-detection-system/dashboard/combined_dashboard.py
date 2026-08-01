@@ -46,10 +46,6 @@ def load_all_data():
         "usb_usage.csv"
     ]
 
-    for f in files:
-        path = os.path.join(DATA_DIR, f)
-        st.write(f"{path} : {os.path.exists(path)}")
-
     features_path = os.path.join(DATA_DIR, "merged_features.csv")
     scores_path = os.path.join(DATA_DIR, "anomaly_scores.csv")
     file_access_path = os.path.join(DATA_DIR, "file_access.csv")
