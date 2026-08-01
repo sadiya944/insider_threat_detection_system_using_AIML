@@ -1,23 +1,24 @@
+import sqlite3
 import bcrypt
-from database import get_connection
 
-username = "admin"
-password = "admin123"
-port= 3307
-
-hashed = bcrypt.hashpw(
-    password.encode(),
+password = bcrypt.hashpw(
+    "admin123".encode(),
     bcrypt.gensalt()
 ).decode()
 
-conn = get_connection()
+conn = sqlite3.connect("insider_threat.db")
 cursor = conn.cursor()
 
 cursor.execute("""
 INSERT INTO users(username,password,role)
-VALUES(%s,%s,%s)
-""",(username,hashed,"Admin"))
+VALUES(?,?,?)
+""",(
+    "admin",
+    password,
+    "Admin"
+))
 
 conn.commit()
+conn.close()
 
 print("Admin Created")
