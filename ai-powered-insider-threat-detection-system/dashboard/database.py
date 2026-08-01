@@ -1,10 +1,8 @@
-import mysql.connector
+import sqlite3
+
+DB_NAME = "insider_threat.db"
 
 def get_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        port=3307,
-        user="root",
-        password="Root",
-        database="insider_threat"
-    )
+    conn = sqlite3.connect(DB_NAME, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    return conn
