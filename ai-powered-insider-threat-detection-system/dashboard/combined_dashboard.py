@@ -175,7 +175,6 @@ with graph_tab:
 with how_tab:
     st.header('How Does It Work?')
     st.markdown('''
-('''
 ## System Overview
 This system detects insider threats by analyzing user behavior, system access, and relationships using advanced machine learning and graph analysis techniques.
 
