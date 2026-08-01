@@ -4,7 +4,8 @@ import networkx as nx
 from pyvis.network import Network
 import os
 from login import login_page
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
@@ -46,17 +47,22 @@ def load_all_data():
         path = os.path.join(DATA_DIR, f)
         st.write(path, os.path.exists(path))
 
-    features = pd.read_csv(os.path.join(DATA_DIR, "merged_features.csv"))
-    scores = pd.read_csv(os.path.join(DATA_DIR, "anomaly_scores.csv"))
-    file_access = pd.read_csv(
-        os.path.join(DATA_DIR, "file_access.csv"),
-        parse_dates=["access_time"]
-    )
-    usb_usage = pd.read_csv(
-        os.path.join(DATA_DIR, "usb_usage.csv"),
-        parse_dates=["plug_time", "unplug_time"]
-    )
+    features_path = os.path.join(DATA_DIR, "merged_features.csv")
+    features = pd.read_csv(features_path)
+  scores_path = os.path.join(DATA_DIR, "anomaly_scores.csv")
+scores = pd.read_csv(scores_path)
 
+file_access_path = os.path.join(DATA_DIR, "file_access.csv")
+file_access = pd.read_csv(
+    file_access_path,
+    parse_dates=["access_time"]
+)
+
+usb_usage_path = os.path.join(DATA_DIR, "usb_usage.csv")
+usb_usage = pd.read_csv(
+    usb_usage_path,
+    parse_dates=["plug_time", "unplug_time"]
+)
     return features, scores, file_access, usb_usage
 
 features, scores, file_access, usb_usage = load_all_data()
