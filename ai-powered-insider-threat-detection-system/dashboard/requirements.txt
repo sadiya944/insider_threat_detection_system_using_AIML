@@ -9,7 +9,5 @@ pyvis
 shap
 lime
 joblib
-pyyaml
-jupyter
 bcrypt
-mysql-connector-python
+pyyaml
