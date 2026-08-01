@@ -29,7 +29,6 @@ if st.session_state.user["role"] == "Admin":
 
     if st.button("Retrain Model"):
         st.success("Model Retrained")
-DATA_DIR = 'data'
 
 st.set_page_config(layout="wide")
 st.title('AI-Powered Insider Threat Detection: Combined Dashboard')
