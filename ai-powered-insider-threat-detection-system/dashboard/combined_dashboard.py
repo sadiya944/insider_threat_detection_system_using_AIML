@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import sys
-sys.path.append(r"C:\Users\sadiy\AppData\Local\Programs\Python\Python312\Lib\site-packages")
 import networkx as nx
 from pyvis.network import Network
 import os
