@@ -33,29 +33,12 @@ DATA_DIR = 'data'
 
 st.set_page_config(layout="wide")
 st.title('AI-Powered Insider Threat Detection: Combined Dashboard')
-import os
-import streamlit as st
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-st.write("Current working directory:", os.getcwd())
-st.write("Current file:", __file__)
-st.write("BASE_DIR:", BASE_DIR)
-
-DATA_DIR = os.path.join(BASE_DIR, "data")   # We'll verify if this is correct
-st.write("DATA_DIR:", DATA_DIR)
-
-st.write("Files in BASE_DIR:")
-st.write(os.listdir(BASE_DIR))
-
-if os.path.exists(DATA_DIR):
-    st.write("Files in DATA_DIR:")
-    st.write(os.listdir(DATA_DIR))
-else:
-    st.error("DATA_DIR does not exist!")
 # Load data
 def load_all_data():
     features = pd.read_csv(os.path.join(DATA_DIR, 'merged_features.csv'))
+    feature_path = os.path.join(DATA_DIR, "merged_features.csv")
+    st.write(feature_path)
+    st.write(os.path.exists(feature_path))
     scores = pd.read_csv(os.path.join(DATA_DIR, 'anomaly_scores.csv'))
     file_access = pd.read_csv(os.path.join(DATA_DIR, 'file_access.csv'), parse_dates=['access_time'])
     usb_usage = pd.read_csv(os.path.join(DATA_DIR, 'usb_usage.csv'), parse_dates=['plug_time', 'unplug_time'])
