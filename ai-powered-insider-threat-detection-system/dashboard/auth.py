@@ -1,4 +1,4 @@
-import bcryptimport bcrypt
+import bcrypt
 from database import get_connection
 
 def login(username, password):
