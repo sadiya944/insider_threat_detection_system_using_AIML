@@ -63,7 +63,7 @@ usb_usage = pd.read_csv(
     usb_usage_path,
     parse_dates=["plug_time", "unplug_time"]
 )
-    return features, scores, file_access, usb_usage
+return features, scores, file_access, usb_usage
 
 features, scores, file_access, usb_usage = load_all_data()
 df = pd.merge(features, scores, on='user')
