@@ -34,6 +34,9 @@ if st.session_state.user["role"] == "Admin":
 st.set_page_config(layout="wide")
 st.title('AI-Powered Insider Threat Detection: Combined Dashboard')
 # Load data
+# -----------------------------
+# Load data
+# -----------------------------
 def load_all_data():
 
     files = [
@@ -45,28 +48,30 @@ def load_all_data():
 
     for f in files:
         path = os.path.join(DATA_DIR, f)
-        st.write(path, os.path.exists(path))
+        st.write(f"{path} : {os.path.exists(path)}")
 
     features_path = os.path.join(DATA_DIR, "merged_features.csv")
-    features = pd.read_csv(features_path)
     scores_path = os.path.join(DATA_DIR, "anomaly_scores.csv")
-    scores = pd.read_csv(scores_path)
- 
     file_access_path = os.path.join(DATA_DIR, "file_access.csv")
+    usb_usage_path = os.path.join(DATA_DIR, "usb_usage.csv")
+
+    features = pd.read_csv(features_path)
+
+    scores = pd.read_csv(scores_path)
+
     file_access = pd.read_csv(
-    file_access_path,
-    parse_dates=["access_time"]
-)
+        file_access_path,
+        parse_dates=["access_time"]
+    )
 
-usb_usage_path = os.path.join(DATA_DIR, "usb_usage.csv")
-usb_usage = pd.read_csv(
-    usb_usage_path,
-    parse_dates=["plug_time", "unplug_time"]
-)
-return features, scores, file_access, usb_usage
+    usb_usage = pd.read_csv(
+        usb_usage_path,
+        parse_dates=["plug_time", "unplug_time"]
+    )
 
+    return features, scores, file_access, usb_usage
 features, scores, file_access, usb_usage = load_all_data()
-df = pd.merge(features, scores, on='user')
+df = pd.merge(features, scores, on="user")
 
 # Prepare node attributes for graph
 def get_node_attrs():
