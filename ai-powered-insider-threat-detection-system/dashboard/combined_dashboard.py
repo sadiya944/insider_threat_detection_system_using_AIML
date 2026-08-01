@@ -35,13 +35,29 @@ st.set_page_config(layout="wide")
 st.title('AI-Powered Insider Threat Detection: Combined Dashboard')
 # Load data
 def load_all_data():
-    features = pd.read_csv(os.path.join(DATA_DIR, 'merged_features.csv'))
-    feature_path = os.path.join(DATA_DIR, "merged_features.csv")
-    st.write(feature_path)
-    st.write(os.path.exists(feature_path))
-    scores = pd.read_csv(os.path.join(DATA_DIR, 'anomaly_scores.csv'))
-    file_access = pd.read_csv(os.path.join(DATA_DIR, 'file_access.csv'), parse_dates=['access_time'])
-    usb_usage = pd.read_csv(os.path.join(DATA_DIR, 'usb_usage.csv'), parse_dates=['plug_time', 'unplug_time'])
+
+    files = [
+        "merged_features.csv",
+        "anomaly_scores.csv",
+        "file_access.csv",
+        "usb_usage.csv"
+    ]
+
+    for f in files:
+        path = os.path.join(DATA_DIR, f)
+        st.write(path, os.path.exists(path))
+
+    features = pd.read_csv(os.path.join(DATA_DIR, "merged_features.csv"))
+    scores = pd.read_csv(os.path.join(DATA_DIR, "anomaly_scores.csv"))
+    file_access = pd.read_csv(
+        os.path.join(DATA_DIR, "file_access.csv"),
+        parse_dates=["access_time"]
+    )
+    usb_usage = pd.read_csv(
+        os.path.join(DATA_DIR, "usb_usage.csv"),
+        parse_dates=["plug_time", "unplug_time"]
+    )
+
     return features, scores, file_access, usb_usage
 
 features, scores, file_access, usb_usage = load_all_data()
