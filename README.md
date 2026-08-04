@@ -49,7 +49,10 @@ pip install -r requirements.txt
 - Real-time stream processing (Kafka/Spark)
 - Graph Neural Network for advanced entity analysis
 - Further NLP for chat/message analysis
+  ## Login Credentials
+  - admin
+  -admin123
 
 ## Notes
-- For legacy/simple dashboard, you may use `dashboard/app.py`, but `dashboard/combined_dashboard.py` is the recommended entry point for the full experience.
+- For legacy/simple dashboard, you may use  `dashboard/combined_dashboard.py` is the recommended entry point for the full experience.
 - All code is modular for easy extension and experimentation. 
